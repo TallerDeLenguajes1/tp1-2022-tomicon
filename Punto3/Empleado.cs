@@ -8,14 +8,17 @@ public class Empleado
     private string apellido;
     private string direccion;
     private double sueldoBase;
-    DateTime ingresoEmpresa;
-    DateTime nacimiento;
+    private DateTime ingresoEmpresa;
+    private DateTime nacimiento;
+    private DateTime? fechaDivorcio; 
+    private int cantHijos;
+    private TituloUniversitario? titulo;
 
     public Empleado()
     {
     }
 
-    public Empleado(int dni, string nombre, string apellido, string direccion, double sueldoBase, DateTime ingresoEmpresa, DateTime nacimiento, int dni, string nombre, string apellido, string direccion, DateTime ingresoEmpresa, DateTime nacimiento, double sueldoBase)
+    public Empleado(int dni, string nombre, string apellido, string direccion, double sueldoBase, DateTime ingresoEmpresa, DateTime nacimiento, DateTime? fechaDivorcio, int cantHijos, TituloUniversitario? titulo)
     {
         this.Dni = dni;
         this.Nombre = nombre;
@@ -24,6 +27,9 @@ public class Empleado
         this.SueldoBase = sueldoBase;
         this.IngresoEmpresa = ingresoEmpresa;
         this.Nacimiento = nacimiento;
+        this.FechaDivorcio= fechaDivorcio;
+        this.CantHijos= cantHijos;
+        this.Titulo= titulo;
     }
 
     public int Dni { get => dni; set => dni = value; }
@@ -33,6 +39,9 @@ public class Empleado
     public DateTime IngresoEmpresa { get => ingresoEmpresa; set => ingresoEmpresa = value; }
     public DateTime Nacimiento { get => nacimiento; set => nacimiento = value; }
     public double SueldoBase { get => sueldoBase; set => sueldoBase = value; }
+    public DateTime? FechaDivorcio { get => fechaDivorcio; set => fechaDivorcio = value; }
+    public int CantHijos { get => cantHijos; set => cantHijos = value; }
+    public TituloUniversitario? Titulo { get => titulo; set => titulo = value; }
 
     public int calcularAntiguedad(){
         int antiguedad = DateTime.Now.Year - this.IngresoEmpresa.Year;
@@ -70,4 +79,10 @@ public class Empleado
         return this.SueldoBase + this.calcularAdicional() + this.calcularDescuento();
     }
 
+    public void listarInfo(){
+        System.Console.WriteLine("Apellido: "+ this.Apellido);
+        System.Console.WriteLine("Nombre: " + this.nombre);
+        System.Console.WriteLine("Antiguedad: " + this.calcularAntiguedad());
+        System.Console.WriteLine("Salario: $" + this.calcularSalario());
+    }
 }
